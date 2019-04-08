@@ -1,20 +1,17 @@
 from flask import Flask
 from temperature_sensor import TemperatureSensor
-from input_bus import *
 from datetime import datetime, timedelta
+from regulator import *
 
 app = Flask(__name__)
 
 temperature_sensor = TemperatureSensor(4,"Indoor humidity/temperature")
-temperature_sensor.start()
 
-input_bus = InputBus(timedelta(days=1))
-input_bus.add_sensor(temperature_sensor)
+regulator = Regulator(timedelta(days=1),timedelta(seconds=15))
 
 @app.route('/')
 def index():
-    mesured_field = input_bus.read_inputs()
-    print(mesured_field)
+    mesured_field = regulator.actualize()
     page = str()
     for value in mesured_field:
         print(value)

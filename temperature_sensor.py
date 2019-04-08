@@ -1,8 +1,5 @@
-from collections import deque
-from statistics import mean
 import Adafruit_DHT
 from threading import Thread, RLock
-import time
 from sensor import *
 
 
