@@ -8,7 +8,7 @@ app = Flask(__name__)
 temperature_sensor = TemperatureSensor(4,"Indoor humidity/temperature")
 temperature_sensor.start()
 
-input_bus = InputBus(timedelta(minutes=5))
+input_bus = InputBus(timedelta(days=1))
 input_bus.add_sensor(temperature_sensor)
 
 @app.route('/')
