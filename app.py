@@ -8,6 +8,8 @@ app = Flask(__name__)
 temperature_sensor = TemperatureSensor(4,"Indoor humidity/temperature")
 
 regulator = Regulator(timedelta(days=1),timedelta(seconds=15))
+regulator.add_input(temperature_sensor)
+regulator.start()
 
 @app.route('/')
 def index():
